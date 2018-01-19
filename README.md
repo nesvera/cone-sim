@@ -7,7 +7,7 @@ A simple self-driving car simulator built with Unity.
   - Udp interface with autonomous mode
 
 <p align="center">
-<img src="images/pic_1.PNG" width="450" height="270">
+<img src="images/pic_5.PNG" width="450" height="270">
 </p>
 
 ### Precompiled builds
@@ -33,6 +33,7 @@ V0 - 1/19/18
 </p>
 
 ### To-do List
+There is many things to be done
   - Improve joystick and racing wheel interface
   - Reinforcement Mode
 
