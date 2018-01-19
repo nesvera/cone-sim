@@ -26,7 +26,7 @@ Data on the following table is store which frame
 
 | Index | Data |
 | ------ | ------ |
-| 0 | Recording Time |
+| 0 | Recording time |
 | 1 | Throttle input |
 | 2 | Brake input |
 | 3 | Steering input |
