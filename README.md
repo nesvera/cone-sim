@@ -57,10 +57,10 @@ Table 2
 
 | Index | Data |
 | ------ | ------ |
-| 0 | Throttle input |
-| 1 | Brake input |
-| 2 | Steering input |
-| 3 | Handbrake input |
+| 0 | Throttle |
+| 1 | Brake |
+| 2 | Steering |
+| 3 | Handbrake |
 
 ### Track Editor
 
