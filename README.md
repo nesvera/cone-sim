@@ -22,8 +22,9 @@ V0 - 1/19/18
 <img src="images/pic_2.PNG" width="450" height="270">
 </p>
 
-Data on the following table is store which frame
+In Table 1. is shown the data that is store which frame
 
+Table 1
 | Index | Data |
 | ------ | ------ |
 | 0 | Recording time |
@@ -38,10 +39,27 @@ Data on the following table is store which frame
 | 9 | Position z |
 |10 to 45 | 36 raycasts distance |
 
+P.S.:
+  - From the image below z is the vertical axis, and x is the horizontal axis
+  - Raycast[0] is in the right side (90º) of the car
 
 <p align="center">
 <img src="images/pic_4.PNG" width="450" height="270">
 </p>
+
+## Autonomous Mode
+
+Which frame a string is send throgh udp. This string contais the same data shown in Table 1.
+The game waits for a csv string with the data shown in Table 2.
+
+Table 2
+
+| Index | Data |
+| ------ | ------ |
+| 0 | Throttle input |
+| 1 | Brake input |
+| 2 | Steering input |
+| 3 | Handbrake input |
 
 ### Track Editor
 
