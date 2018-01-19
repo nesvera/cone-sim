@@ -25,6 +25,7 @@ V0 - 1/19/18
 In Table 1. is shown the data that is store which frame
 
 Table 1
+
 | Index | Data |
 | ------ | ------ |
 | 0 | Recording time |
