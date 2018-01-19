@@ -22,6 +22,23 @@ V0 - 1/19/18
 <img src="images/pic_2.PNG" width="450" height="270">
 </p>
 
+Data on the following table is store which frame
+
+| Index | Data |
+| ------ | ------ |
+| 0 | Recording Time |
+| 1 | Throttle input |
+| 2 | Brake input |
+| 3 | Steering input |
+| 4 | Handbrake input |
+| 5 | Car speed |
+| 6 | Acceleration x |
+| 7 | Acceleration z |
+| 8 | Position x |
+| 9 | Position z |
+|10 to 45 | 36 raycasts distance |
+
+
 <p align="center">
 <img src="images/pic_4.PNG" width="450" height="270">
 </p>
