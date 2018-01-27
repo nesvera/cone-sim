@@ -52,6 +52,10 @@ P.S.:
 
 ## Autonomous Mode
 
+<p align="center">
+<img src="images/pic_6.PNG" width="450" height="270">
+</p>
+
 Which frame a string is send throgh udp. This string contais the same data shown in Table 1.
 The game waits for a csv string with the data shown in Table 2.
 
