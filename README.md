@@ -2,6 +2,8 @@
 
 A simple self-driving car simulator built with Unity.
 
+The fist version of this game is being developed to train neural networks using supervised learning.
+
   - Easy to create new tracks
   - Save training data in txt files
   - Udp interface with autonomous mode
