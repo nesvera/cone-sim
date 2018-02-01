@@ -36,7 +36,7 @@ V0 - 1/19/18
   ```
   
   - [Windows 64-bit](https://drive.google.com/open?id=13OlOGZzfnkzZZPYdxJ5oKztiSti_O4Sq)
-  ```
+  ```
   Download
   Extract the contents of Windows_64b.zip
     
@@ -45,9 +45,8 @@ V0 - 1/19/18
     
   Unity configuration window will be open, where is possible to configure graphics and input settings.
   Click Ok to start the game.
-  ```
+  ```
   
-
 ## Training Mode
 
 <p align="center">
