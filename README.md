@@ -14,20 +14,25 @@ The fist version of this game is being developed to train neural networks using 
 ## Precompiled builds
 
 V0 - 1/19/18
-  - [Linux](https://drive.google.com/open?id=1H92uKw3k1OTCE58SPFoQ247ly4FyhGGC)
+  - [Linux](https://drive.google.com/open?id=1H92uKw3k1OTCE58SPFoQ247ly4FyhGGC) (109,7 MB)
   ```
  Download
- Extracts the contents of the zip
+ Extracts the contents of Linux_x86_universal.zip
  
- Right click on executable properties->permission->check "allow executing file...."
- Double click on executable
+ Inside Linux_x86_universal/Linux_x86_universal folder
+ Right click on Cone_SIM.x86 or Cone_SIM.x86_64
+ Properties-> Permission-> Check "Allow executing file as program"
+ Double click on Cone_SIM.x86 or Cone_SIM.x86_64
  
- or in terminal
- $ cd Linux_x64_universal/
- $ chmod +x Cone_SIM.x86          // 32-bit
- $ chmod +x Cone_SIM.x86_64       // 64-bit
- $ ./Cone_SIM.x86                 // 32-bit
- $ ./Cone_SIM.x86_64              // 64-bit
+ Or in terminal
+ $ cd Linux_x64_universal/Linux_x64_universal
+ $ chmod +x Cone_SIM.x86          # 32-bit
+ $ chmod +x Cone_SIM.x86_64       # 64-bit
+ $ ./Cone_SIM.x86                 # 32-bit
+ $ ./Cone_SIM.x86_64              # 64-bit
+ 
+ Unity configuration window will be open, where is possible to configure graphics and input settings.
+ Click Ok to start the game.
  
   ```
   
