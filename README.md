@@ -35,7 +35,7 @@ V0 - 1/19/18
  Click Ok to start the game.
   ```
   
-  - [Windows 64-bit](https://drive.google.com/open?id=13OlOGZzfnkzZZPYdxJ5oKztiSti_O4Sq)
+  - [Windows 64-bit](https://drive.google.com/open?id=13OlOGZzfnkzZZPYdxJ5oKztiSti_O4Sq) (62,0 MB)
   ```
   Download
   Extract the contents of Windows_64b.zip
