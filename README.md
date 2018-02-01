@@ -47,7 +47,6 @@ V0 - 1/19/18
   Click Ok to start the game.
   ```
   ```
-  ```
   
 ## Training Mode
 
