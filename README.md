@@ -15,6 +15,20 @@ The fist version of this game is being developed to train neural networks using 
 
 V0 - 1/19/18
   - [Linux](https://drive.google.com/open?id=1H92uKw3k1OTCE58SPFoQ247ly4FyhGGC)
+  ```
+ Download
+ Extracts the contents of the zip
+ 
+ Right click on executable properties->permission->check "allow executing file...."
+ Double click on executable
+ 
+ or in terminal
+ 
+ $ chmod +x nameOfGame.x86
+ $ ./nameOfGame.x86
+ 
+  ```
+  
   - [Windows](https://drive.google.com/open?id=13OlOGZzfnkzZZPYdxJ5oKztiSti_O4Sq)
 
 ## Training Mode
