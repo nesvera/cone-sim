@@ -17,7 +17,7 @@ V0 - 1/19/18
   - [Linux](https://drive.google.com/open?id=1H92uKw3k1OTCE58SPFoQ247ly4FyhGGC) (109,7 MB)
   ```
  Download
- Extracts the contents of Linux_x86_universal.zip
+ Extract the contents of Linux_x86_universal.zip
  
  Inside Linux_x86_universal/Linux_x86_universal folder
  Right click on Cone_SIM.x86 or Cone_SIM.x86_64
@@ -36,7 +36,19 @@ V0 - 1/19/18
  
   ```
   
-  - [Windows](https://drive.google.com/open?id=13OlOGZzfnkzZZPYdxJ5oKztiSti_O4Sq)
+  - [Windows 64-bit](https://drive.google.com/open?id=13OlOGZzfnkzZZPYdxJ5oKztiSti_O4Sq)
+    ```
+ Download
+ Extract the contents of Windows_64b.zip
+ 
+ Inside Windows_64b/Windows_64b folder
+ Double click on Cone_SIM.exe
+ 
+ Unity configuration window will be open, where is possible to configure graphics and input settings.
+ Click Ok to start the game.
+ 
+  ```
+  
 
 ## Training Mode
 
