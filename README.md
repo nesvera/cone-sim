@@ -33,20 +33,18 @@ V0 - 1/19/18
  
  Unity configuration window will be open, where is possible to configure graphics and input settings.
  Click Ok to start the game.
- 
   ```
   
   - [Windows 64-bit](https://drive.google.com/open?id=13OlOGZzfnkzZZPYdxJ5oKztiSti_O4Sq)
-    ```
-    Download
-    Extract the contents of Windows_64b.zip
+  ```
+  Download
+  Extract the contents of Windows_64b.zip
     
-    Inside Windows_64b/Windows_64b folder
-    Double click on Cone_SIM.exe
+  Inside Windows_64b/Windows_64b folder
+  Double click on Cone_SIM.exe
     
-    Unity configuration window will be open, where is possible to configure graphics and input settings.
-    Click Ok to start the game.
- 
+  Unity configuration window will be open, where is possible to configure graphics and input settings.
+  Click Ok to start the game.
   ```
   
 
