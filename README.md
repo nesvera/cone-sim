@@ -45,7 +45,7 @@ V0 - 1/19/18
     
   Unity configuration window will be open, where is possible to configure graphics and input settings.
   Click Ok to start the game.
-  ```
+  
   ```
   
 ## Training Mode
