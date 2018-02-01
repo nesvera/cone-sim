@@ -1,5 +1,4 @@
 ### Cone-SIM
----
 A simple self-driving car simulator built with Unity.
 
 The fist version of this game is being developed to train neural networks using supervised learning.
@@ -12,7 +11,7 @@ The fist version of this game is being developed to train neural networks using 
 <img src="images/pic_5.PNG" width="450" height="270">
 </p>
 
-### Precompiled builds
+## Precompiled builds
 
 V0 - 1/19/18
   - [Linux](https://drive.google.com/open?id=1H92uKw3k1OTCE58SPFoQ247ly4FyhGGC)
