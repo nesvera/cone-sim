@@ -17,7 +17,7 @@ V0 - 1/19/18
   - [Linux](https://drive.google.com/open?id=1H92uKw3k1OTCE58SPFoQ247ly4FyhGGC)
   - [Windows](https://drive.google.com/open?id=13OlOGZzfnkzZZPYdxJ5oKztiSti_O4Sq)
 
-### Training Mode
+## Training Mode
 
 <p align="center">
 <img src="images/pic_2.PNG" width="450" height="270">
@@ -67,13 +67,13 @@ Table 2
 | 2 | Steering |
 | 3 | Handbrake |
 
-### Track Editor
+## Track Editor
 
 <p align="center">
 <img src="images/pic_3.PNG" width="450" height="270">
 </p>
 
-### To-do List
+## To-do List
 There is many things to be done
   - Improve joystick and racing wheel interface
   - Reinforcement Mode
