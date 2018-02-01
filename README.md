@@ -23,9 +23,11 @@ V0 - 1/19/18
  Double click on executable
  
  or in terminal
- 
- $ chmod +x nameOfGame.x86
- $ ./nameOfGame.x86
+ $ cd Linux_x64_universal/
+ $ chmod +x Cone_SIM.x86          // 32-bit
+ $ chmod +x Cone_SIM.x86_64       // 64-bit
+ $ ./Cone_SIM.x86                 // 32-bit
+ $ ./Cone_SIM.x86_64              // 64-bit
  
   ```
   
