@@ -42,6 +42,7 @@ public class TrackEditorControl : MonoBehaviour {
 	public GameObject panel_car;
 	public GameObject panel_checkpoint;
 
+
 	private bool is_driving;
 
 	void Awake(){
@@ -374,6 +375,11 @@ public class TrackEditorControl : MonoBehaviour {
 		// Set format
 		panel_cone.transform.Find ("InputField_position_x").GetComponent<InputField> ().text = new_position.x.ToString ("F2");
 		panel_cone.transform.Find ("InputField_position_z").GetComponent<InputField> ().text = new_position.z.ToString ("F2");
+
+	}
+
+	// Update button - Camera position panel
+	public void buttonUpdateCamera(){
 
 	}
 

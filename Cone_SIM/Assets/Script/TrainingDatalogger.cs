@@ -7,6 +7,14 @@ using System;
 using System.IO;
 using System.Text;
 
+/* Script of training mode scene
+ * This script needs to be added as component of a GameObject (just create an empty one and drag this script)
+ * 
+ * Read n raycast around the car to show the user and recording on file
+ * 
+ * dNesvera 
+ */
+
 // Access car scripts
 using UnityStandardAssets.Vehicles.Car;
 
@@ -23,6 +31,7 @@ public class TrainingDatalogger : MonoBehaviour {
 	private int lidar_angle_end = 360;
 	private int lidar_num_ray = 36;
 	private int lidar_angle_bt;
+	public float lidar_range = 60.0f;
 
 	private float[] lidar_read = new float[36];
 
@@ -73,12 +82,13 @@ public class TrainingDatalogger : MonoBehaviour {
 
 		// Read environment
 		Raycast ();
-
-		// Print data on telemetry window
-		PrintTelemetry();
 				
 		// Store data in a string to save later
-		StoreTelemetry();
+		StoreTelemetry ();
+	
+
+		// Print data on telemetry window
+		PrintTelemetry ();
 	}
 
 	// Read the environment similar lidar
@@ -88,14 +98,17 @@ public class TrainingDatalogger : MonoBehaviour {
 
 		RaycastHit hit;
 
+		lidar_range = GameControl.raycast_range;
+
 		// Get the position of the car and a offset on the Y axis
 		lidar.transform.position = new Vector3(vehicle.transform.position.x, vehicle.transform.position.y + 0.2f , vehicle.transform.position.z);
 
 		// Sensor rotate 3 axis (if the car break, the sensor may detect the ground)
-		lidar.transform.eulerAngles = vehicle.transform.eulerAngles;
+		//lidar.transform.eulerAngles = vehicle.transform.eulerAngles;
+		//Vector3 car_eulerAngle = vehicle.transform.eulerAngles;
 
 		// Sensor rotate just in the Y axis (stay parallel with the ground)
-		//lidar.transform.eulerAngles = new Vector3(0, vehicle.transform.eulerAngles.y, 0);
+		lidar.transform.eulerAngles = new Vector3(0, vehicle.transform.eulerAngles.y, 0);
 
 		// Right side of the car 
 		int car_right = 90;
@@ -104,24 +117,19 @@ public class TrainingDatalogger : MonoBehaviour {
 		int i;
 		int j = 0;
 		for (i = lidar_angle_start; i > -lidar_angle_end; i-=lidar_angle_bt ) {
-			if (Physics.Raycast (lidar.transform.position, Quaternion.AngleAxis ((float)(car_right+i), lidar.transform.up) * lidar.transform.forward, out hit, 15.0f )) {
+			if (Physics.Raycast (lidar.transform.position, Quaternion.AngleAxis ((float)(car_right+i), lidar.transform.up) * lidar.transform.forward, out hit, lidar_range )) {
 				Debug.DrawLine (lidar.transform.position, hit.point);
 				//Debug.Log (i + " - d: " + hit.distance);
 
-			
-				lidar_read [j++] = hit.distance;
+				lidar_read [j++] = hit.distance / lidar_range;
 
 			} else {
-				Debug.DrawLine (lidar.transform.position, lidar.transform.position + Quaternion.AngleAxis ((float)(car_right+i), lidar.transform.up)*lidar.transform.forward*15f);
+				Debug.DrawLine (lidar.transform.position, lidar.transform.position + Quaternion.AngleAxis ((float)(car_right+i), lidar.transform.up)*lidar.transform.forward*lidar_range);
 				//Debug.Log ("sl " + Quaternion.AngleAxis ((float)i, vehicle.up) * vehicle.forward * 10f);
 			
-
-				lidar_read [j++] = 15.0f;
+				lidar_read [j++] = lidar_range / lidar_range;
 
 			}
-
-
-
 		}
 	}
 
@@ -185,8 +193,6 @@ public class TrainingDatalogger : MonoBehaviour {
 
 		// Print datalogger information on the telemetry window
 		if (telemetry_text != null && vehicle != null ) {
-
-			Debug.Log (vehicle.GetComponent<CarController> ().data_throttle + ";" + vehicle.GetComponent<CarController> ().data_brake + ";" + vehicle.GetComponent<CarController> ().data_steering);
 
 			telemetry_str = "";
 			telemetry_str +=	"    Input " +  "\n" +

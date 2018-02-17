@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * This script needs to be added as component of the traffic-cone object
+ * 
+ * dNesvera 
+ */
+
 public class neighbor : MonoBehaviour {
 
 	public GameObject wall_prefab;

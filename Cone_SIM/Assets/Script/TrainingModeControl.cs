@@ -43,8 +43,17 @@ public class TrainingModeControl : MonoBehaviour {
 	public GameObject drive_camera;
 	private int current_camera = 0;
 
+	[Header("UI")]
+	public GameObject config_panel	;
+
 	void Awake(){
-		GameControl.current_mode = "Autonomous Mode";
+		GameControl.current_mode = "Training Mode";
+
+		// Set car topspeed
+		float speed = PlayerPrefs.GetFloat("top_speed");
+		GameControl.setCarSpeed (speed);
+		config_panel.transform.Find ("InputField_car_speed").GetComponent<InputField> ().text = speed.ToString ("F0");
+
 
 		BuildLoadedTrack ();
 	}
@@ -72,14 +81,19 @@ public class TrainingModeControl : MonoBehaviour {
 		// If the car goes out of the map
 		GameObject car = GameObject.Find ("Car").transform.GetChild(0).gameObject;
 		if (car.transform.position.y < -10) {
-			car.transform.position = car_init_position;
-			car.transform.eulerAngles = car_init_rotation;
+			buttonReset ();
 		}
 			
 	}
 
 	public void buttonReset(){
+		// Get car reference
 		GameObject car = GameObject.Find ("Car").transform.GetChild(0).gameObject;
+
+		// Reset velocity of the car
+		car.GetComponent<CarController>().ResetCar();
+
+		// Reset position of the car
 		car.transform.position = car_init_position;
 		car.transform.eulerAngles = car_init_rotation;
 	}
@@ -99,6 +113,19 @@ public class TrainingModeControl : MonoBehaviour {
 		// Load the Start Menu Scene
 		SceneManager.LoadScene("Start Menu");
 	
+	}
+
+	public void buttonUpdateSettings(){
+		float new_speed = float.Parse(config_panel.transform.Find ("InputField_car_speed").GetComponent<InputField> ().text);
+		new_speed = Mathf.Clamp (new_speed, GameControl.min_speed, GameControl.max_speed);
+
+		GameControl.setCarSpeed (new_speed);
+
+		config_panel.transform.Find ("InputField_car_speed").GetComponent<InputField> ().text = new_speed.ToString ("F0");
+		GameObject.Find ("Car").transform.GetChild (0).gameObject.transform.GetComponent<CarController> ().m_Topspeed = new_speed;
+
+		// Save the top speed where you can reload in a new game
+		PlayerPrefs.SetFloat ("top_speed", new_speed);
 	}
 
 

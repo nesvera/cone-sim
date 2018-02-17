@@ -14,6 +14,12 @@ using System.Threading;
 // Access car scripts
 using UnityStandardAssets.Vehicles.Car;
 
+/* Script handles the udp communication
+ * This script needs to be added as component of a GameObject (just create an empty one and drag this script)
+ * 
+ * dNesvera 
+ */
+
 public class AutonomousModeInterface : MonoBehaviour {
 
 	[Header("Vehicle")]
@@ -113,11 +119,8 @@ public class AutonomousModeInterface : MonoBehaviour {
 		// Read environment
 		Raycast ();
 
-		// Print data on telemetry window
-		PrintTelemetry();
-
+		// Autonomous mode is enabled
 		if (is_self_driving_on) {
-
 
 			// Send car state via udp
 			SendTelemetry ();
@@ -133,9 +136,15 @@ public class AutonomousModeInterface : MonoBehaviour {
 				i++;
 			}
 
-			// Control the car
-			vehicle.GetComponent<CarController> ().Move(input_command [2], input_command [0], input_command [1], input_command [3]);
+			// Throttle receive (0->1) expect (0->1)
+			// Brake receive (0->1) expect (-1->0)
+			// Steering receive (-1->1) expect (-1->1)
+			// Handbrake receive (0->1) expect (0->1)
+			vehicle.GetComponent<CarController> ().Move(input_command [2], input_command [0], (-1)*input_command [1], input_command [3]);
 		}
+
+		// Print data on telemetry window
+		PrintTelemetry();
 	}
 
 	// Read the environment similar lidar
@@ -145,14 +154,16 @@ public class AutonomousModeInterface : MonoBehaviour {
 
 		RaycastHit hit;
 
+		float lidar_range = GameControl.raycast_range;
+
 		// Get the position of the car and a offset on the Y axis
 		lidar.transform.position = new Vector3(vehicle.transform.position.x, vehicle.transform.position.y + 0.2f , vehicle.transform.position.z);
 
 		// Sensor rotate 3 axis (if the car break, the sensor may detect the ground)
-		lidar.transform.eulerAngles = vehicle.transform.eulerAngles;
+		//lidar.transform.eulerAngles = vehicle.transform.eulerAngles;
 
 		// Sensor rotate just in the Y axis (stay parallel with the ground)
-		//lidar.transform.eulerAngles = new Vector3(0, vehicle.transform.eulerAngles.y, 0);
+		lidar.transform.eulerAngles = new Vector3(0, vehicle.transform.eulerAngles.y, 0);
 
 		// Right side of the car 
 		int car_right = 90;
@@ -161,19 +172,19 @@ public class AutonomousModeInterface : MonoBehaviour {
 		int i;
 		int j = 0;
 		for (i = lidar_angle_start; i > -lidar_angle_end; i-=lidar_angle_bt ) {
-			if (Physics.Raycast (lidar.transform.position, Quaternion.AngleAxis ((float)(car_right+i), lidar.transform.up) * lidar.transform.forward, out hit, 15.0f )) {
+			if (Physics.Raycast (lidar.transform.position, Quaternion.AngleAxis ((float)(car_right+i), lidar.transform.up) * lidar.transform.forward, out hit, lidar_range )) {
 				Debug.DrawLine (lidar.transform.position, hit.point);
 				//Debug.Log (i + " - d: " + hit.distance);
 
 
-				lidar_read [j++] = hit.distance;
+				lidar_read [j++] = hit.distance/lidar_range;
 
 			} else {
-				Debug.DrawLine (lidar.transform.position, lidar.transform.position + Quaternion.AngleAxis ((float)(car_right+i), lidar.transform.up)*lidar.transform.forward*15f);
+				Debug.DrawLine (lidar.transform.position, lidar.transform.position + Quaternion.AngleAxis ((float)(car_right+i), lidar.transform.up)*lidar.transform.forward*lidar_range);
 				//Debug.Log ("sl " + Quaternion.AngleAxis ((float)i, vehicle.up) * vehicle.forward * 10f);
 
 
-				lidar_read [j++] = 15.0f;
+				lidar_read [j++] = lidar_range/lidar_range;
 
 			}
 		}
@@ -190,6 +201,9 @@ public class AutonomousModeInterface : MonoBehaviour {
 		// Print datalogger information on the telemetry window
 		if (telemetry_text != null && vehicle != null ) {
 
+			float current_speed = (vehicle.GetComponent<CarController> ().data_speed / GameControl.car_top_speed);
+			//float current_speed = vehicle.GetComponent<CarController> ().data_speed;
+
 			telemetry_str = "";
 			telemetry_str +=	"    Input " +  "\n" +
 				"Throttle: " + vehicle.GetComponent<CarController>().data_throttle + "\n" +
@@ -198,7 +212,7 @@ public class AutonomousModeInterface : MonoBehaviour {
 				"Hand brake: " + vehicle.GetComponent<CarController>().data_handbrake + "\n" +
 				"\n" +
 				"    Output " + "\n" +
-				"Speed: " + vehicle.GetComponent<CarController>().data_speed + "\n" +
+				"Speed: " + current_speed + "\n" +
 				"Accel(x): " + "00.0" + "\n" +
 				"Accel(z): " + "00.0" + "\n" +
 				"Latitude(x): " + vehicle.transform.position.x + "\n" +
@@ -215,13 +229,15 @@ public class AutonomousModeInterface : MonoBehaviour {
 	// Send car state via udp 
 	void SendTelemetry(){
 
+		float top_speed = GameControl.car_top_speed;
+
 		telemetry_str = "";
 		telemetry_str += (Time.time - start_time).ToString ("F3") + ";" + 									// [0] - Time since enable self-driving
 			vehicle.GetComponent<CarController> ().data_throttle.ToString ("F3") + ";" +					// [1] - throtlle
 			vehicle.GetComponent<CarController> ().data_brake.ToString ("F3") + ";" +						// [2] - brake
 			vehicle.GetComponent<CarController> ().data_steering.ToString ("F3") + ";" +					// [3] - steering
 			vehicle.GetComponent<CarController> ().data_handbrake.ToString ("F3") + ";" +					// [4] - handbrake
-			vehicle.GetComponent<CarController> ().data_speed.ToString ("F3") + ";" +						// [5] - speed
+			(vehicle.GetComponent<CarController> ().data_speed/top_speed).ToString ("F3") + ";" +						// [5] - speed
 			"00.0" + ";" +																					// [6] - acceleration x
 			"00.0" + ";" +																					// [7] - acceleration z
 			vehicle.transform.position.x.ToString ("F3") + ";" +											// [8] - latitude x

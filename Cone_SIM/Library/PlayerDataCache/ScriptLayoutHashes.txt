@@ -1,5 +1,5 @@
 WindowsStandalone
-d60b9718554a15820b1d1cbb782ed609 Assembly-CSharp.dll:.CameraTrackEditor
+2559b91daf05c4881d8ffe34d2741e3a Assembly-CSharp.dll:.CameraTrackEditor
 75cd0c6c744b9733ef29aa6c59ece2b1 Assembly-CSharp.dll:TMPro.Examples.VertexZoom
 c906602d9b43cc5e075f80e1d8ae7c79 Assembly-CSharp.dll:TMPro.Examples.Benchmark01_UGUI
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -136,7 +136,7 @@ e763036081c708b34f78f5a56f72c23d TextMeshPro-2017.2-1.0.56-Runtime.dll:TMPro.TMP
 136f28bae18bcd1072d830ee3456f3ab TextMeshPro-2017.2-1.0.56-Runtime.dll:TMPro.TMP_SubMesh
 5833a86cc374f497ae8d9fb9d8c3e5f4 TextMeshPro-2017.2-1.0.56-Runtime.dll:TMPro.TMP_SubMeshUI
 d672cee35261f9935d5ce974c746730f TextMeshPro-2017.2-1.0.56-Runtime.dll:TMPro.TMP_Text
-031981ea5f3b84abe075bda9abb2261d Assembly-CSharp.dll:.TrainingDatalogger
+274b8762ae897ac36bd13a7ae398f866 Assembly-CSharp.dll:.TrainingDatalogger
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.InputFieldChecker
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CheckpointControl
 dc07d7ad69b399a46e92c483bf1c04ca UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
@@ -216,7 +216,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 3f32f08a64daf40b09ed864d96fe3840 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
-42be063e2dbf375da97f1913770a1e2c Assembly-CSharp.dll:.TrackEditorControl
+e700a7cdec034ea69ed10895e949808b Assembly-CSharp.dll:.TrackEditorControl
 62229a3e4d53ca59bec192e89627ed52 Assembly-CSharp.dll:TMPro.Examples.CameraController
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 2a56361227def9f56c2cf57a88b32f4d UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController

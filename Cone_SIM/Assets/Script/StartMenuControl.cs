@@ -74,6 +74,9 @@ public class StartMenuControl : MonoBehaviour {
 
 			}
 		}
+
+		// Reload top speed
+		GameControl.setCarSpeed (PlayerPrefs.GetFloat ("top_speed"));
 	}
 
 	public void TrackEditorButton(){

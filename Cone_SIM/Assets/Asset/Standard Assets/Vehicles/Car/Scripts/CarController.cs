@@ -31,7 +31,7 @@ namespace UnityStandardAssets.Vehicles.Car
         [SerializeField] private float m_MaxHandbrakeTorque;
         [SerializeField] private float m_Downforce = 100f;
         [SerializeField] private SpeedType m_SpeedType;
-        [SerializeField] private float m_Topspeed = 200;
+		[SerializeField] public float m_Topspeed = 200;
         [SerializeField] private static int NoOfGears = 5;
         [SerializeField] private float m_RevRangeBoundary = 1f;
         [SerializeField] private float m_SlipLimit;
@@ -155,8 +155,6 @@ namespace UnityStandardAssets.Vehicles.Car
             AccelInput = accel = Mathf.Clamp(accel, 0, 1);
             BrakeInput = footbrake = -1*Mathf.Clamp(footbrake, -1, 0);
             handbrake = Mathf.Clamp(handbrake, 0, 1);
-
-
 
             //Set the steer on the front wheels.
             //Assuming that wheels 0 and 1 are the front wheels.
@@ -394,5 +392,16 @@ namespace UnityStandardAssets.Vehicles.Car
             }
             return false;
         }
+
+		// Reset car
+		public void ResetCar(){ 
+			m_Rigidbody.velocity = new Vector3(0, 0, 0);
+
+			for (int i = 0; i < 4; i++)
+			{
+				m_WheelColliders[i].motorTorque = 0;
+			}
+		}
+
     }
 }

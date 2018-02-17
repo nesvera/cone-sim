@@ -2238,10 +2238,17 @@ MonoBehaviour:
   m_MaxHandbrakeTorque: 100000000
   m_Downforce: 100
   m_SpeedType: 1
-  m_Topspeed: 150
+  m_Topspeed: 80
   m_RevRangeBoundary: 1
   m_SlipLimit: 0.4
   m_BrakeTorque: 20000
+  data_steering: 0
+  data_throttle: 0
+  data_brake: 0
+  data_handbrake: 0
+  data_speed: 0
+  data_accel_x: 0
+  data_accel_z: 0
 --- !u!119 &119345209573923824
 Projector:
   m_ObjectHideFlags: 1

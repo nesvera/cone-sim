@@ -5,6 +5,14 @@ using UnityEngine.UI;
 using UnityStandardAssets.Vehicles.Car;
 using UnityEngine.SceneManagement;
 
+/* Script of autonomous mode scene
+ * This script needs to be added as component of a GameObject (just create an empty one and drag this script)
+ *
+ * Script TrainingDatalogger to interact with user in autonomous mode
+ * 
+ * dNesvera 
+ */
+
 public class AutonomousModeControl : MonoBehaviour {
 
 	// Prefab reference
@@ -31,8 +39,17 @@ public class AutonomousModeControl : MonoBehaviour {
 	public GameObject drive_camera;
 	private int current_camera = 0;
 
+	[Header("Panels")]
+	public GameObject config_panel;
+
 	void Awake(){
 		GameControl.current_mode = "Autonomous Mode";
+
+		// Set car topspeed
+		float speed = PlayerPrefs.GetFloat("top_speed");
+		GameControl.setCarSpeed (speed);
+		config_panel.transform.Find ("InputField_car_speed").GetComponent<InputField> ().text = speed.ToString ("F0");
+		GameObject.Find ("Car").transform.GetChild (0).gameObject.GetComponent<CarController> ().m_Topspeed = speed;
 
 		BuildLoadedTrack ();
 	}
@@ -65,16 +82,22 @@ public class AutonomousModeControl : MonoBehaviour {
 		// If the car goes out of the map
 		GameObject car = GameObject.Find ("Car").transform.GetChild(0).gameObject;
 		if (car.transform.position.y < -10) {
-			car.transform.position = car_init_position;
-			car.transform.eulerAngles = car_init_rotation;
+			buttonReset ();
 		}
 
 	}
 
 	public void buttonReset(){
+		// Get car reference
 		GameObject car = GameObject.Find ("Car").transform.GetChild(0).gameObject;
+
+		// Reset velocity of the car
+		car.GetComponent<CarController>().ResetCar();
+
+		// Reset position of the car
 		car.transform.position = car_init_position;
 		car.transform.eulerAngles = car_init_rotation;
+
 	}
 
 	public void buttonTrackEditor(){
@@ -93,7 +116,19 @@ public class AutonomousModeControl : MonoBehaviour {
 		SceneManager.LoadScene("Start Menu");
 
 	}
+		
+	public void buttonUpdateSettings(){
+		float new_speed = float.Parse(config_panel.transform.Find ("InputField_car_speed").GetComponent<InputField> ().text);
+		new_speed = Mathf.Clamp (new_speed, GameControl.min_speed, GameControl.max_speed);
 
+		GameControl.setCarSpeed (new_speed);
+
+		config_panel.transform.Find ("InputField_car_speed").GetComponent<InputField> ().text = new_speed.ToString ("F0");
+		GameObject.Find ("Car").transform.GetChild (0).gameObject.transform.GetComponent<CarController> ().m_Topspeed = new_speed;
+
+		// Save the top speed where you can reload in a new game
+		PlayerPrefs.SetFloat ("top_speed", new_speed);
+	}
 
 	public void BuildLoadedTrack(){
 
