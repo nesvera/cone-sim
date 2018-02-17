@@ -1,5 +1,4 @@
 ### Cone-SIM
-
 A simple self-driving car simulator built with Unity.
 
 The fist version of this game is being developed to train neural networks using supervised learning.
@@ -12,13 +11,44 @@ The fist version of this game is being developed to train neural networks using 
 <img src="images/pic_5.PNG" width="450" height="270">
 </p>
 
-### Precompiled builds
+## Precompiled builds
 
 V0 - 1/19/18
-  - [Linux](https://drive.google.com/open?id=1H92uKw3k1OTCE58SPFoQ247ly4FyhGGC)
-  - [Windows](https://drive.google.com/open?id=13OlOGZzfnkzZZPYdxJ5oKztiSti_O4Sq)
-
-### Training Mode
+  - [Linux](https://drive.google.com/open?id=1H92uKw3k1OTCE58SPFoQ247ly4FyhGGC) (109,7 MB)
+  ```
+ Download
+ Extract the contents of Linux_x86_universal.zip
+ 
+ Inside Linux_x86_universal/Linux_x86_universal folder
+ Right click on Cone_SIM.x86 or Cone_SIM.x86_64
+ Properties-> Permission-> Check "Allow executing file as program"
+ Double click on Cone_SIM.x86 or Cone_SIM.x86_64
+ 
+ Or in terminal
+ $ cd Linux_x64_universal/Linux_x64_universal
+ $ chmod +x Cone_SIM.x86          # 32-bit
+ $ chmod +x Cone_SIM.x86_64       # 64-bit
+ $ ./Cone_SIM.x86                 # 32-bit
+ $ ./Cone_SIM.x86_64              # 64-bit
+ 
+ Unity configuration window will be open, where is possible to configure graphics and input settings.
+ Click Ok to start the game.
+  ```
+  
+  - [Windows 64-bit](https://drive.google.com/open?id=13OlOGZzfnkzZZPYdxJ5oKztiSti_O4Sq) (62,0 MB)
+  ```
+  Download
+  Extract the contents of Windows_64b.zip
+    
+  Inside Windows_64b/Windows_64b folder
+  Double click on Cone_SIM.exe
+    
+  Unity configuration window will be open, where is possible to configure graphics and input settings.
+  Click Ok to start the game.
+  
+  ```
+  
+## Training Mode
 
 <p align="center">
 <img src="images/pic_2.PNG" width="450" height="270">
@@ -68,13 +98,13 @@ Table 2
 | 2 | Steering |
 | 3 | Handbrake |
 
-### Track Editor
+## Track Editor
 
 <p align="center">
 <img src="images/pic_3.PNG" width="450" height="270">
 </p>
 
-### To-do List
+## To-do List
 There is many things to be done
   - Improve joystick and racing wheel interface
   - Reinforcement Mode
