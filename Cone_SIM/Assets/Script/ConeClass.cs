@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* 
+ * 
+ * dNesvera 
+ */
+
 public class ConeClass{
 	private static int id_counter = 0;
 

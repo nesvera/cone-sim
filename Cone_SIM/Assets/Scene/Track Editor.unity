@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.22488803, g: 0.1931276, b: 0.18824193, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2061,9 +2061,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   initial_height: 16
-  panSpeed: 20
-  panLimit: {x: 1000, y: 1000}
-  scrollSpeed: 5
+  panSpeed: 150
+  panLimit: {x: 957.28, y: 971.21}
+  scrollSpeed: 20
   minY: 3
   maxY: 730
   panel_camera: {fileID: 56991069}
@@ -4963,11 +4963,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 0
+  m_havePropertiesChanged: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 0
+  m_isInputParsingRequired: 1
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:

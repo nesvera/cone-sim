@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/* 
+ * 
+ * dNesvera 
+ */
+
 public class CheckpointWall : MonoBehaviour {
 
 	// Use this for initialization

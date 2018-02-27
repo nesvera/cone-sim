@@ -113,6 +113,11 @@ public class AutonomousModeInterface : MonoBehaviour {
 		udp_timeout = 0;
 	}
 
+	// Function to map a range to another
+	float map(float value, float in_min, float in_max, float out_min, float out_max){
+		return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+	}
+		
 	// Update is called once per frame
 	void FixedUpdate () {
 
@@ -137,10 +142,18 @@ public class AutonomousModeInterface : MonoBehaviour {
 			}
 
 			// Throttle receive (0->1) expect (0->1)
+			float throttle = input_command [0];
+
 			// Brake receive (0->1) expect (-1->0)
-			// Steering receive (-1->1) expect (-1->1)
+			float brake = (-1)*input_command [1];
+
+			// Steering receive (0->1) expect (-1->1)
+			float steering = map(input_command[2], 0, 1, -1, 1);
+
 			// Handbrake receive (0->1) expect (0->1)
-			vehicle.GetComponent<CarController> ().Move(input_command [2], input_command [0], (-1)*input_command [1], input_command [3]);
+			float handbrake = input_command[3];
+
+			vehicle.GetComponent<CarController> ().Move(steering, throttle, brake, handbrake);
 		}
 
 		// Print data on telemetry window
@@ -201,8 +214,8 @@ public class AutonomousModeInterface : MonoBehaviour {
 		// Print datalogger information on the telemetry window
 		if (telemetry_text != null && vehicle != null ) {
 
-			float current_speed = (vehicle.GetComponent<CarController> ().data_speed / GameControl.car_top_speed);
-			//float current_speed = vehicle.GetComponent<CarController> ().data_speed;
+			//float current_speed = (vehicle.GetComponent<CarController> ().data_speed / GameControl.car_top_speed);
+			float current_speed = vehicle.GetComponent<CarController> ().data_speed;
 
 			telemetry_str = "";
 			telemetry_str +=	"    Input " +  "\n" +

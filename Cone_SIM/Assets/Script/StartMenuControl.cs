@@ -7,6 +7,11 @@ using UnityEngine.UI;
 using System.IO;
 using TMPro;
 
+/* Functions to the start menu interface
+ * 
+ * dNesvera 
+ */
+
 public class StartMenuControl : MonoBehaviour {
 
 	[Header("ScrollView")]
@@ -74,9 +79,7 @@ public class StartMenuControl : MonoBehaviour {
 
 			}
 		}
-
-		// Reload top speed
-		GameControl.setCarSpeed (PlayerPrefs.GetFloat ("top_speed"));
+	
 	}
 
 	public void TrackEditorButton(){

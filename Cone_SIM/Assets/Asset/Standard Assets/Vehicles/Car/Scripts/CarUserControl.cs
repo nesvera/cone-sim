@@ -19,31 +19,40 @@ namespace UnityStandardAssets.Vehicles.Car
 
         private void Update()
         {
-            // pass the input to the car!
-            float h = CrossPlatformInputManager.GetAxis("Horizontal");
-			float v = CrossPlatformInputManager.GetAxis("Vertical");
-/*
-			float gas = CrossPlatformInputManager.GetAxis ("Gas");
-			float brake = CrossPlatformInputManager.GetAxis ("Brake");
+			float gas = 0;
+			float brake = 0;
+			float steering = 0;
+			float handbrake = 0;
 
-			float v = 0;
-			if (gas > 0) {
-				v = 1f;
+			// Keyboard
+			if (GameControl.controller_type == 0) {
+				steering = CrossPlatformInputManager.GetAxis("Horizontal");
+				gas = brake = CrossPlatformInputManager.GetAxis("Vertical");
+				handbrake = CrossPlatformInputManager.GetAxis("Jump");
 
-			} else if (brake > 0) {
-				v = -1f;
+			// Xbox - xinput
+			} else if (GameControl.controller_type == 1) {
+				// Windows
+				//steering = CrossPlatformInputManager.GetAxis("Horizontal");
+				//gas = brake = CrossPlatformInputManager.GetAxis("Vertical");
+				//handbrake = CrossPlatformInputManager.GetAxis("Jump");
 
-			} else {
-				v = 0f;
+				// Linux
+				steering = CrossPlatformInputManager.GetAxis("Horizontal");
+				gas = CrossPlatformInputManager.GetAxis("Gas");
+				brake = CrossPlatformInputManager.GetAxis("Brake");
+				handbrake = CrossPlatformInputManager.GetAxis("Jump");
+
+			} else if (GameControl.controller_type == 2) {
+				steering = CrossPlatformInputManager.GetAxis("Horizontal");
+				gas = CrossPlatformInputManager.GetAxis ("Gas");
+				brake = (-1)*CrossPlatformInputManager.GetAxis ("Brake");
+				// handbrake = CrossPlataformInputManager.GetAxis("Jump");
 
 			}
 
-			Debug.Log (gas + " - " + brake);
-*/
-
 #if !MOBILE_INPUT
-            float handbrake = CrossPlatformInputManager.GetAxis("Jump");
-            m_Car.Move(h, v, v, handbrake);
+			m_Car.Move(steering, gas, brake, handbrake);
 #else
             m_Car.Move(h, v, v, 0f);
 #endif

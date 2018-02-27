@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets.CrossPlatformInput;
 
 using System;
 using System.IO;
@@ -49,8 +50,6 @@ public class TrainingDatalogger : MonoBehaviour {
 	private String telemetry_file = "";					// Hold all recording telemetry data
 	private String terminal_str = "";					// Hold all terminal information
 
-
-
 	// Use this for initialization
 	void Start () {
 		// Create an invisible gameobject to take the axis to raycast
@@ -76,7 +75,7 @@ public class TrainingDatalogger : MonoBehaviour {
 	void Update () {
 
 		// R = start/stop recording
-		if (Input.GetKeyDown (KeyCode.R)) {
+		if ( CrossPlatformInputManager.GetButtonDown ("Rec") ) {
 			OnRecordPressed ();
 		}
 
@@ -89,6 +88,15 @@ public class TrainingDatalogger : MonoBehaviour {
 
 		// Print data on telemetry window
 		PrintTelemetry ();
+
+		// Lidar - test crash
+		/*
+		if (lidar_read [9] >= 1) {
+			vehicle.transform.GetComponent<CarController> ().Move (0, 1, 0, 0);
+		} else {
+			vehicle.transform.GetComponent<CarController> ().Move (0, 0, -1, 0);
+		}
+		*/
 	}
 
 	// Read the environment similar lidar
@@ -137,7 +145,7 @@ public class TrainingDatalogger : MonoBehaviour {
 	void SaveFile(){
 
 		// File name based on day and time
-		var time = System.DateTime.Now.ToString ("hh.mm");
+		var time = System.DateTime.Now.ToString ("hh.mm.ss");
 		var date = System.DateTime.Now.ToString ("yy.MM.dd");
 		String file_name = date + "_" + time + ".txt";
 
@@ -181,11 +189,41 @@ public class TrainingDatalogger : MonoBehaviour {
 	public void OnHallHit(){
 
 		if (isRecording) {
-			rec_image.SetActive (false);
-			isRecording = false;
+			//rec_image.SetActive (false);
+			//isRecording = false;
 
 			terminal_str += "> Car crashed. Stop recording!" + "\n";
 			terminal_text.text = terminal_str;
+
+			// Delete the last N seconds and save the record
+			int n_secs = 2;
+			int n_frames = 50 * n_secs;
+
+			// split content of the text variable into lines
+			var lines = telemetry_file.Split('\n');
+			string aux_telemetry = "";
+
+			// Has delete some seconds of the recording
+			if (lines.Length > n_frames) {
+
+				for (int i = 0; i < (lines.Length-1-n_frames) ; i++) {
+					aux_telemetry += lines [i] + "\n";
+				}
+
+				//Debug.Log (aux_telemetry);
+
+				// Save telemetry without n last seconds
+				telemetry_file = aux_telemetry;
+
+				// Save file
+				SaveFile ();
+		
+			} 
+
+			// Start another recording
+			recording_start_time = Time.time;
+			telemetry_file = "";							// Reset string that hold all the recording data
+
 		}
 	}
 
@@ -216,21 +254,39 @@ public class TrainingDatalogger : MonoBehaviour {
 		}
 	}
 
+	// Function to map a range to another
+	float map(float value, float in_min, float in_max, float out_min, float out_max){
+		return (value - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+	}
+
 	// Store telemetry in a string 
 	void StoreTelemetry(){
 
+		// data data from the vehicle
+		float throttle = vehicle.GetComponent<CarController> ().data_throttle;
+
+		float brake = vehicle.GetComponent<CarController> ().data_brake;
+
+		float steering = vehicle.GetComponent<CarController> ().data_steering;
+		steering = map (steering, -GameControl.max_steering, GameControl.max_steering, 0, 1);
+
+		float handbrake = vehicle.GetComponent<CarController> ().data_handbrake;
+
+		float speed = vehicle.GetComponent<CarController> ().data_speed;
+		speed = map (speed, -GameControl.max_speed, GameControl.max_speed, 0, 1);
+
 		telemetry_str = "";
 		telemetry_str += (Time.time - recording_start_time).ToString ("F3") + ";" + 						// [0] - recording time
-			vehicle.GetComponent<CarController> ().data_throttle.ToString ("F3") + ";" +					// [1] - throtlle
-			vehicle.GetComponent<CarController> ().data_brake.ToString ("F3") + ";" +						// [2] - brake
-			vehicle.GetComponent<CarController> ().data_steering.ToString ("F3") + ";" +					// [3] - steering
-			vehicle.GetComponent<CarController> ().data_handbrake.ToString ("F3") + ";" +					// [4] - handbrake
-			vehicle.GetComponent<CarController> ().data_speed.ToString ("F3") + ";" +						// [5] - speed
+			throttle.ToString ("F3") + ";" +					// [1] - throtlle
+			brake.ToString ("F3") + ";" +						// [2] - brake
+			steering.ToString ("F3") + ";" +					// [3] - steering
+			handbrake.ToString ("F3") + ";" +					// [4] - handbrake
+			speed.ToString ("F3") + ";" +						// [5] - speed
 			"00.0" + ";" +																					// [6] - acceleration x
 			"00.0" + ";" +																					// [7] - acceleration z
 			vehicle.transform.position.x.ToString ("F3") + ";" +											// [8] - latitude x
 			vehicle.transform.position.z.ToString ("F3") + ";";												// [9] - longitude z
-  
+	
 		for (int i = 0; i < 36; i++) {
 			telemetry_str += lidar_read [i].ToString ("F3") + ";";											// [10 - 45] - 36 raycast distance
 		}

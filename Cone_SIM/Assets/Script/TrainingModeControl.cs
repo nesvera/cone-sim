@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.Vehicles.Car;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.CrossPlatformInput;
 
 /* Script of training mode scene
  * This script needs to be added as component of a GameObject (just create an empty one and drag this script)
@@ -50,10 +51,7 @@ public class TrainingModeControl : MonoBehaviour {
 		GameControl.current_mode = "Training Mode";
 
 		// Set car topspeed
-		float speed = PlayerPrefs.GetFloat("top_speed");
-		GameControl.setCarSpeed (speed);
-		config_panel.transform.Find ("InputField_car_speed").GetComponent<InputField> ().text = speed.ToString ("F0");
-
+		GameObject.Find ("Car").transform.GetChild (0).gameObject.GetComponent<CarController> ().m_Topspeed = GameControl.car_top_speed;
 
 		BuildLoadedTrack ();
 	}
@@ -116,19 +114,14 @@ public class TrainingModeControl : MonoBehaviour {
 	}
 
 	public void buttonUpdateSettings(){
-		float new_speed = float.Parse(config_panel.transform.Find ("InputField_car_speed").GetComponent<InputField> ().text);
-		new_speed = Mathf.Clamp (new_speed, GameControl.min_speed, GameControl.max_speed);
-
-		GameControl.setCarSpeed (new_speed);
-
-		config_panel.transform.Find ("InputField_car_speed").GetComponent<InputField> ().text = new_speed.ToString ("F0");
-		GameObject.Find ("Car").transform.GetChild (0).gameObject.transform.GetComponent<CarController> ().m_Topspeed = new_speed;
-
-		// Save the top speed where you can reload in a new game
-		PlayerPrefs.SetFloat ("top_speed", new_speed);
+		
 	}
 
-
+	// Controller dropdown config tab
+	public void controllerDropdownHandler(Dropdown target){
+		GameControl.controller_type = target.value;
+	}
+		
 	public void BuildLoadedTrack(){
 
 	

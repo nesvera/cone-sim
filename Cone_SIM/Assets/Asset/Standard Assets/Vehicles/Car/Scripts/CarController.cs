@@ -195,9 +195,10 @@ namespace UnityStandardAssets.Vehicles.Car
 			data_throttle = AccelInput;
 			data_brake = BrakeInput;
 			data_handbrake = handbrake;	
-			data_speed = CurrentSpeedKMH;
 
-
+			// Get speed and direction ( + forward, - reverse )
+			float car_dir = Mathf.Sign(transform.InverseTransformDirection (m_Rigidbody.velocity).z);
+			data_speed = car_dir*CurrentSpeedKMH;
 		}
 
 

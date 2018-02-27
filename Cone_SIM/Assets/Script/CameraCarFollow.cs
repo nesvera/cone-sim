@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/* Script to camera that follow the car from behind
+ * 
+ * dNesvera 
+ */
+
 public class CameraCarFollow : MonoBehaviour {
 
 

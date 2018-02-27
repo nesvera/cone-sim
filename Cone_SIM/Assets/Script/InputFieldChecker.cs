@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/* Dont let the user type some characters
+ * 
+ * dNesvera 
+ */
+
 public class InputFieldChecker : MonoBehaviour {
 
 	private InputField input_field;
