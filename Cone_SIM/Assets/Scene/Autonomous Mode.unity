@@ -4522,6 +4522,11 @@ Prefab:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114889854251468920, guid: 3f8f6e4fc96316c4389da000ff8f8bdc,
+        type: 2}
+      propertyPath: m_MaximumSteerAngle
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f8f6e4fc96316c4389da000ff8f8bdc, type: 2}
   m_IsPrefabParent: 0

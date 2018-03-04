@@ -40,8 +40,9 @@ namespace UnityStandardAssets.Vehicles.Car
 				// Linux
 				steering = CrossPlatformInputManager.GetAxis("Horizontal");
 				gas = CrossPlatformInputManager.GetAxis("Gas");
-				brake = CrossPlatformInputManager.GetAxis("Brake");
+				brake = (-1)*CrossPlatformInputManager.GetAxis("Brake");
 				handbrake = CrossPlatformInputManager.GetAxis("Jump");
+
 
 			} else if (GameControl.controller_type == 2) {
 				steering = CrossPlatformInputManager.GetAxis("Horizontal");

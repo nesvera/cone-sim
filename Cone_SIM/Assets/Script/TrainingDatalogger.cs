@@ -246,6 +246,26 @@ public class TrainingDatalogger : MonoBehaviour {
 				"Latitude(x): " + vehicle.transform.position.x + "\n" +
 				"Longitude(z): " + vehicle.transform.position.z + "\n";
 
+			/* Just to test the controller axis
+			float axis_3 = CrossPlatformInputManager.GetAxis ("axis_3");
+			float axis_4 = CrossPlatformInputManager.GetAxis ("axis_4");
+			float axis_5 = CrossPlatformInputManager.GetAxis ("axis_5");
+			float axis_6 = CrossPlatformInputManager.GetAxis ("axis_6");
+			float axis_7 = CrossPlatformInputManager.GetAxis ("axis_7");
+			float axis_8 = CrossPlatformInputManager.GetAxis ("axis_8");
+			float axis_9 = CrossPlatformInputManager.GetAxis ("axis_9");
+			float axis_10 = CrossPlatformInputManager.GetAxis ("axis_10");
+
+			telemetry_str +=	"axis_3: " + axis_3 + "\n" +
+			"axis_4: " + axis_4 + "\n" +
+			"axis_5: " + axis_5 + "\n" +
+			"axis_6: " + axis_6 + "\n" +
+			"axis_7: " + axis_7 + "\n" +
+			"axis_8: " + axis_8 + "\n" +
+			"axis_9: " + axis_9 + "\n" +
+			"axis_10: " + axis_10 + "\n";
+			*/
+
 			for (int i = 0; i < 36; i++) {
 				telemetry_str += "Lidar " + i + ": " + lidar_read [i] + "\n";
 			}

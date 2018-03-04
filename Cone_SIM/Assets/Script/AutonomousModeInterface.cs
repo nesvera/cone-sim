@@ -119,7 +119,7 @@ public class AutonomousModeInterface : MonoBehaviour {
 	}
 		
 	// Update is called once per frame
-	void FixedUpdate () {
+	void Update () {
 
 		// Read environment
 		Raycast ();
@@ -143,15 +143,19 @@ public class AutonomousModeInterface : MonoBehaviour {
 
 			// Throttle receive (0->1) expect (0->1)
 			float throttle = input_command [0];
+			input_command [0] = 0;		// Reset value
 
 			// Brake receive (0->1) expect (-1->0)
 			float brake = (-1)*input_command [1];
+			input_command [1] = 0;		// Reset value
 
 			// Steering receive (0->1) expect (-1->1)
 			float steering = map(input_command[2], 0, 1, -1, 1);
+			input_command [2] = 0.5f;	// Reset value
 
 			// Handbrake receive (0->1) expect (0->1)
 			float handbrake = input_command[3];
+			input_command [3] = 0;		// Reset value
 
 			vehicle.GetComponent<CarController> ().Move(steering, throttle, brake, handbrake);
 		}
